@@ -1,9 +1,23 @@
 body {
   margin: 0;
-  padding: 2rem;
+  padding: 0;
   font-family: system-ui, sans-serif;
   background: url('https://source.unsplash.com/1920x1080/?abstract,soft') no-repeat center/cover;
   min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* ✅ Header styling */
+.page-header {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 2rem 0.5rem 2rem;
+  text-align: left;
+}
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
 }
 
 main {
@@ -12,7 +26,7 @@ main {
   text-align: center;
 }
 
-/* — Liquid Glass "Soon" button — */
+
 .liquid-btn {
   position: relative;
   padding: 0.75rem 2rem;
@@ -31,8 +45,29 @@ main {
     0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   cursor: pointer;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /*transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);*/
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: background 0.6s ease, box-shadow 0.6s ease;
+}
+
+.liquid-btn.active {
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  box-shadow:
+    0 6px 24px rgba(0, 0, 0, 0.4),
+    0 2px 4px rgba(255, 255, 255, 0.15) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+}
+
+.liquid-btn.inactive {
+  background: rgba(255, 255, 255, 0.1);  /* subtle white background */
+  color: rgba(0, 0, 0, 0.3);             /* faded text */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* same as active border */
+  box-shadow: none;
+  pointer-events: auto;                 /* allow clicking */
+  filter: none;
+  opacity: 0.6;                         /* slightly transparent */
+  transition: opacity 0.3s ease;       /* smooth fading */
 }
 
 .liquid-btn::before {
@@ -81,6 +116,16 @@ main {
   transform: translateY(-1px);
 }
 
+.liquid-btn.active:hover {
+  background: rgba(0, 0, 0, 0.85); /* same as .active */
+  border-color: rgba(255, 255, 255, 0.2); /* optional: keep it consistent */
+  box-shadow:
+    0 6px 24px rgba(0, 0, 0, 0.4),
+    0 2px 4px rgba(255, 255, 255, 0.15) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+  transform: none;
+}
+
 .liquid-btn:hover::before {
   opacity: 1;
 }
@@ -90,10 +135,103 @@ main {
   opacity: 1;
 }
 
-.liquid-btn:active {
-  transform: translateY(0);
+/* ✅ Sticky container around nav */
+.nav-sticky-wrapper {
+  position: sticky;
+  top: 1rem;
+  z-index: 1000;
+
+  /* ✅ Wraps only around panel */
+  display: flex;
+  justify-content: flex-start;
+
+  /* ✅ Same max width as content */
+  max-width: 960px;
+  margin: 0 auto;
+
+  /* ✅ Glass style background */
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 0.3rem 0.3rem;
+}
+
+.nav-panel {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  /* ✅ No background or padding here now */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-panel .liquid-btn {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* --- 1. Default look in the no-active state -------------------- */
+/* Nothing to do: they’ll keep the normal `.liquid-btn` styling     */
+/* ----------------------------------------------------------------*/
+
+/* --- 2. When *any* button is hovered, make THAT one dark -------- */
+.nav-panel.no-active .liquid-btn:hover {
+  background: rgba(0, 0, 0, 0.85);  /* active black */
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.20);
+  opacity: 1;
+  /* ::before / ::after swoosh already applies via `.liquid-btn:hover` */
+}
+
+/* --- 3. While the nav itself is hovered, fade every *other* button */
+.nav-panel.no-active:hover .liquid-btn:not(:hover) {
+  /* ⬇️ Same as .liquid-btn.inactive ------------------------------ */
+  background: rgba(255, 255, 255, 0.10);   /* identical alpha */
+  color:      rgba(0, 0, 0, 0.30);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  box-shadow: none;                        /* remove shadow too */
+  opacity: 0.6;
+  transition: background 0.3s ease, opacity 0.3s ease;
+}
+
+/* 🔧 New: Makes links behave and look like buttons */
+.liquid-link {
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* ✅ Consistent section block styling */
+.about-section {
+  width: 100%;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  color: #000;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  text-align: left;
+  box-sizing: border-box;
   box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.2),
-    0 1px 2px rgba(255, 255, 255, 0.1) inset,
-    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    0 4px 24px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(255, 255, 255, 0.05) inset;
+  border-radius: 16px;
+  max-width: 960px;
+  margin: 2rem auto;
+}
+
+#about {
+  padding-top: 5rem;
+}
+
+/* ✅ Optional: contact icons more spacious on mobile */
+.contact-block p {
+  text-align: left;
+  font-size: 1.5rem;
+  word-spacing: 1rem;
 }

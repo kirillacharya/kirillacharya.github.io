@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>KA</title>
+  <title>Kirill Acharya</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -11,5 +11,153 @@
     <h1>Kirill Acharya</h1>
     <button class="liquid-btn">Coming Soon</button>
   </main>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kirill Acharya</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ✅ Header at the top -->
+  <header class="page-header">
+    <h1>Kirill Acharya</h1>
+  </header>
+
+  <!-- ✅ Sticky wrapper for nav panel -->
+  <div class="nav-sticky-wrapper">
+    <nav class="nav-panel">
+      <a href="#about"        class="liquid-btn liquid-link" data-target="about">About Me</a>
+      <a href="#publications" class="liquid-btn liquid-link" data-target="publications">Publications</a>
+      <a href="#contact"      class="liquid-btn liquid-link" data-target="contact">Contact</a>
+    </nav>
+  </div>
+
+  <!-- ✅ About Section -->
+  <section id="about" class="about-section">
+    <p>
+      Hi, my name is Kirill. Hi, my name is Kirill. Hi, my name is Kirill. Hi, my name is Kirill.
+      Hi, my name is Kirill. Hi, my name is Kirill. Hi, my name is Kirill. Hi, my name is Kirill.
+      Hi, my name is Kirill. Hi, my name is Kirill. Hi, my name is Kirill. Hi, my name is Kirill.
+      Hi, my name is Kirill. Hi, my name is Kirill. Hi, my name is Kirill. Hi, my name is Kirill.
+      Hi, my name is Kirill. Hi, my name is Kirill.
+    </p>
+  </section>
+
+  <!-- ✅ Publications Section -->
+  <section id="publications" class="about-section">
+    <p>
+      Here will be my publication<br>
+      Here will be my publication<br>
+      Here will be my publication<br>
+      Here will be my publication<br>
+      Here will be my publication<br>
+      Here will be my publication<br>
+      Here will be my publication<br>
+      Here will be my publication<br>
+      Here will be my publication<br>
+      Here will be my publication<br>
+      Here will be my publication<br>
+      Here will be my publication<br>
+      Here will be my publication<br>
+      Here will be my publication<br>
+      Here will be my publication<br>
+      Here will be my publication<br>
+      Here will be my publication
+    </p>
+  </section>
+
+  <!-- ✅ Contact Section -->
+  <section id="contact" class="about-section contact-block">
+    <p>📧 Email • 🧠 GitHub • 📄 CV • 📸 Instagram • 🧵 Threads</p>
+  </section>
+
+  <script>
+    /* ---------- CONFIG ---------- */
+    const STICKY = document.querySelector('.nav-sticky-wrapper');   // glass bar
+    const LINKS  = document.querySelectorAll('.nav-panel a');
+    const SECS   = [...LINKS].map(l => document.getElementById(l.dataset.target));
+    
+    /* ---------- LIVE INFO to console ---------- */
+    console.info('[scroll-debug] sections:', SECS.map(s => s.id));
+    
+    function debugLog(msg){ console.log('%c[scroll-debug]','color:#09f',msg) }
+    
+    /* ---------- MAIN ---------- */
+    function highlight(){
+      const barBottom = STICKY.getBoundingClientRect().bottom + window.scrollY;
+    
+      let activeId = null;
+      SECS.forEach(sec => {
+        const top    = sec.offsetTop;
+        const bottom = top + sec.offsetHeight;
+        if(barBottom >= top && barBottom < bottom){
+          activeId = sec.id;
+        }
+      });
+    
+      // LINKS.forEach(link => {
+      //   const isActive = link.dataset.target === activeId;
+      //   link.classList.toggle('active', isActive);
+      //   link.classList.toggle('inactive', !isActive && activeId);
+      // });
+
+      const navPanel = document.querySelector('.nav-panel');
+
+      if (!activeId) {
+        navPanel.classList.add('no-active');
+      } else {
+        navPanel.classList.remove('no-active');
+      }
+
+      LINKS.forEach(link => {
+        const isActive = link.dataset.target === activeId;
+        link.classList.toggle('active', isActive);
+        link.classList.toggle('inactive', !isActive && activeId);
+      });
+    
+      debugLog({barBottom, activeId});
+    }
+    
+    window.addEventListener('scroll',  highlight, {passive:true});
+    window.addEventListener('resize',  highlight);
+    document.addEventListener('DOMContentLoaded', highlight);
+  </script>
+  <!-- <script>
+    const STICKY = document.querySelector('.nav-sticky-wrapper');   // glass bar
+    const LINKS  = document.querySelectorAll('.nav-panel a');
+    const SECS   = [...LINKS].map(l => document.getElementById(l.dataset.target));
+  
+    function debugLog(msg){ console.log('%c[scroll-debug]','color:#09f',msg) }
+  
+    function highlight(){
+      const barBottom = STICKY.getBoundingClientRect().bottom + window.scrollY;
+      let activeId = null;
+  
+      SECS.forEach(sec => {
+        const top    = sec.offsetTop;
+        const bottom = top + sec.offsetHeight;
+        if (barBottom >= top && barBottom < bottom) {
+          activeId = sec.id;
+        }
+      });
+  
+      LINKS.forEach(link => {
+        const isActive = link.dataset.target === activeId;
+        link.classList.toggle('active', isActive);
+        link.classList.toggle('inactive', !isActive && activeId); // optional: you can remove this if you don’t want it at all
+      });
+  
+      debugLog({ barBottom, activeId });
+    }
+  
+    window.addEventListener('scroll',  highlight, { passive: true });
+    window.addEventListener('resize',  highlight);
+    document.addEventListener('DOMContentLoaded', highlight);
+  </script> -->
 </body>
 </html>
