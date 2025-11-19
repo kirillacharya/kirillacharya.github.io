@@ -187,6 +187,31 @@ main {
   opacity: 1;
   /* ::before / ::after swoosh already applies via `.liquid-btn:hover` */
 }
+/* Dark mode: make hovered nav button white */
+body.inverted .nav-panel.no-active .liquid-btn:hover {
+  background: #fff;
+  color: #000;
+  border-color: rgba(0,0,0,0.20);
+  opacity: 1;
+}
+
+/* Dark mode: fade non-hovered buttons with light text */
+body.inverted .nav-panel.no-active:hover .liquid-btn:not(:hover) {
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.60);
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: none;
+  opacity: 0.8;
+}
+
+/* Dark mode: inactive nav buttons match panel edge tone even when idle */
+body.inverted .nav-panel .liquid-btn:not(.active) {
+  background: rgba(255, 255, 255, 0.10);
+  color: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+  opacity: 0.9;
+}
 
 /* --- 3. While the nav itself is hovered, fade every *other* button */
 .nav-panel.no-active:hover .liquid-btn:not(:hover) {
@@ -226,7 +251,7 @@ main {
 }
 
 #about {
-  padding-top: 5rem;
+  padding-top: 1rem;
 }
 
 /* ✅ Optional: contact icons more spacious on mobile */
@@ -234,4 +259,386 @@ main {
   text-align: left;
   font-size: 1.5rem;
   word-spacing: 1rem;
+}
+
+
+
+/* ─── Enhanced link styling inside content sections ─────────────── */
+.about-section a,
+.about-section a:visited {
+  position: relative;
+  color: #000;
+  text-decoration: underline;
+  text-decoration-color: #000;
+  text-underline-offset: 2px;
+  transition: color 0.3s ease;
+}
+
+.about-section a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(to right, #C41E3A 0%, #C41E3A 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease-in-out;
+  pointer-events: none;
+}
+
+.about-section a:hover,
+.about-section a:focus {
+  color: #C41E3A;
+  text-decoration-color: transparent;
+}
+
+.about-section a:hover::after,
+.about-section a:focus::after {
+  transform: scaleX(1);
+}
+
+.about-content {
+  display: flex;
+  align-items: center;  /* vertical align */
+  gap: 2rem;
+  max-width: 860px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.about-photo {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.about-text {
+  flex: 1;
+  min-width: 200px;
+}
+
+.about-text p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .about-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-content p {
+    text-align: center;
+  }
+}
+
+body::after {
+  content: "";
+  display: block;
+  height: 80vh; 
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Glassy pills inside the description sections */
+.glass-pill {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem 1.5rem;
+  border-radius: 20px;
+  margin: 1.5rem auto;
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(255, 255, 255, 0.05) inset;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 920px;
+  gap: 1rem;
+}
+
+.pill-main {
+  flex: 1;
+  min-width: 200px;
+}
+
+.pill-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.pill-authors,
+.pill-venue {
+  font-size: 1.05rem;
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 0.3rem;
+  line-height: 1.4;
+}
+
+.pill-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.pill-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.9);
+  background: transparent;
+  backdrop-filter: blur(20px) saturate(200%);
+  -webkit-backdrop-filter: blur(20px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%; /* ← perfect circle */
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(255, 255, 255, 0.1) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+.pill-tag:hover {
+  text-decoration: none !important;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.pill-tag::after {
+  color: rgba(0, 0, 0, 0.9) !important;
+  content: none !important;
+  text-decoration: none !important;
+}
+
+body.inverted .pill-tag:hover {
+  color: #C41E3A !important;         
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.pill-tag.pill-faded {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+/* ---- About left column (photo + meta) ---- */
+.about-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  min-width: 200px;
+}
+
+.about-meta {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.about-name {
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.1px;
+}
+
+.about-desc {
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+/* row of liquid squares */
+.social-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.social-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.35);
+  border-radius: 12px;
+  backdrop-filter: blur(20px) saturate(200%);
+  -webkit-backdrop-filter: blur(20px) saturate(200%);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow:
+    0 4px 16px rgba(0,0,0,0.1),
+    0 1px 2px rgba(255,255,255,0.1) inset,
+    0 0 0 1px rgba(255,255,255,0.05) inset;
+  color: inherit;                     /* no forced blue */
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Remove blue outline on click/keyboard focus */
+.social-btn:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 2px rgba(0,0,0,0.15),
+    0 2px 4px rgba(0,0,0,0.1);
+}
+
+.social-btn:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.15),
+    0 2px 4px rgba(255,255,255,0.15) inset,
+    0 0 0 1px rgba(255,255,255,0.10) inset;
+}
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+/* default icon always visible, hover icon hidden until hover */
+.icon-hover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.social-btn:hover .icon-default { opacity: 0; }
+.social-btn:hover .icon-hover  { opacity: 1; }
+
+/* kill the fancy underline for the icon buttons */
+.social-row .social-btn { text-decoration: none !important; color: inherit; }
+.social-row .social-btn::after { content: none !important; }
+
+@media (max-width: 640px) {
+  .about-left { align-items: center; }
+}
+
+.theme-toggle-btn {
+  width: 40px; height: 40px; padding: 0;
+  display:flex; align-items:center; justify-content:center;
+  border-radius: 12px; /* matches your nav button roundness */
+}
+
+/* icons share sizing; only one is visible at a time */
+.theme-toggle-btn .icon { width: 22px; height: 22px; display:none; }
+
+/* Light mode: show black moon */
+body:not(.inverted) .theme-toggle-btn { color:#000; }
+body:not(.inverted) .theme-toggle-btn .moon { display:block; }
+
+/* Dark mode: show white sun */
+body.inverted .theme-toggle-btn { color:#fff; }
+body.inverted .theme-toggle-btn .sun { display:block; }
+
+/* Light mode: show black moon */
+body:not(.inverted) .theme-toggle-btn .moon { display: block; }
+
+/* Dark mode: show white sun */
+body.inverted .theme-toggle-btn .sun  { display: block; }
+
+/* Dark mode base */
+body.inverted {
+  background: #000;
+  color: #fff;
+}
+
+/* Content blocks (sections/pills) */
+body.inverted .about-section,
+body.inverted .glass-pill {
+  background: rgba(30, 30, 30, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    0 10px 40px rgba(255, 255, 255, 0.18),
+    0 2px 8px  rgba(255, 255, 255, 0.16) inset,
+    0 0 0 1px  rgba(255, 255, 255, 0.12) inset;
+  color: #fff; /* base text */
+}
+
+/* Force descendants to inherit the block's white text */
+body.inverted .about-section * ,
+body.inverted .glass-pill * { color: inherit !important; }
+
+/* Content links: white + underline */
+body.inverted .about-section a,
+body.inverted .glass-pill a { text-decoration: underline; }
+
+/* Media stays natural */
+body.inverted img,
+body.inverted video,
+body.inverted svg { filter: none; }
+
+/* Nav bar */
+body.inverted .nav-sticky-wrapper a {
+  color: inherit;            /* keep like light theme */
+  text-decoration: none;     /* no underline in nav */
+}
+body.inverted .nav-panel .liquid-btn {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Active nav button: white pill, black text */
+body.inverted .nav-panel .liquid-btn.active {
+  background: #fff;
+  color: #000 !important;
+}
+
+/* ─── Footer ─────────────────────────────── */
+.site-footer {
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  background: rgba(255, 255, 255, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(0, 0, 0, 0.75);
+  margin-top: 3rem;
+}
+
+/* dark mode */
+body.inverted .site-footer {
+  background: rgba(30, 30, 30, 0.88);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ─── Footer links (match rest of site) ─── */
+.site-footer a,
+.site-footer a:visited {
+  color: inherit;                         
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-underline-offset: 2px;
+  transition: color 0.3s ease;
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+  color: #C41E3A;                          
+  text-decoration-color: transparent;
+  text-decoration: underline;
 }

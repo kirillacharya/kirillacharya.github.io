@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -12,15 +12,17 @@
     <button class="liquid-btn">Coming Soon</button>
   </main>
 </body>
-</html>
+</html> -->
 
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Kirill Acharya</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="image" href="icons/stanford-logo.svg">
+  <link rel="preload" as="image" href="icons/linkedin-logo-regular.svg">
 </head>
 <body>
   <header class="page-header">
@@ -31,45 +33,137 @@
     <nav class="nav-panel">
       <a href="#about"        class="liquid-btn liquid-link" data-target="about">About Me</a>
       <a href="#publications" class="liquid-btn liquid-link" data-target="publications">Publications</a>
+      <a href="#involvements" class="liquid-btn liquid-link" data-target="involvements">Involvements</a>
       <a href="#contact"      class="liquid-btn liquid-link" data-target="contact">Contact</a>
+      <a href="#website"      class="liquid-btn liquid-link" data-target="website">Website</a>
+      <button id="theme-toggle" class="liquid-btn theme-toggle-btn" aria-label="Toggle theme">
+        <!-- Black Moon (LIGHT mode) -->
+        <svg class="icon moon" viewBox="0 0 24 24" aria-hidden="true">
+          <g transform="scale(-1,1) translate(-24,0)">
+            <!-- very thin crescent, flipped -->
+            <path fill="currentColor" d="M12 2a10 10 0 1 0 9.5 13.2A8 8 0 0 1 12 2z"/>
+          </g>
+        </svg>
+      
+        <!-- White Sun (triangular rays, base near circle, tips farther out, thicker/wider) -->
+        <svg class="icon sun" viewBox="0 0 24 24" aria-hidden="true">
+          <!-- core circle -->
+          <circle cx="12" cy="12" r="6" fill="currentColor"/>
+
+          <!-- wider triangles -->
+          <g fill="currentColor">
+            <!-- base widened from 3px to 5px (x positions further apart) -->
+            <polygon points="9.5,4.4 14.5,4.4 12,0.8"/>
+            <polygon points="9.5,4.4 14.5,4.4 12,0.8" transform="rotate(45 12 12)"/>
+            <polygon points="9.5,4.4 14.5,4.4 12,0.8" transform="rotate(90 12 12)"/>
+            <polygon points="9.5,4.4 14.5,4.4 12,0.8" transform="rotate(135 12 12)"/>
+            <polygon points="9.5,4.4 14.5,4.4 12,0.8" transform="rotate(180 12 12)"/>
+            <polygon points="9.5,4.4 14.5,4.4 12,0.8" transform="rotate(225 12 12)"/>
+            <polygon points="9.5,4.4 14.5,4.4 12,0.8" transform="rotate(270 12 12)"/>
+            <polygon points="9.5,4.4 14.5,4.4 12,0.8" transform="rotate(315 12 12)"/>
+          </g>
+        </svg>
+      </button>
     </nav>
   </div>
 
   <section id="about" class="about-section">
-    <p>
-      Hi, my name is Kirill. Hi, my name is Kirill. Hi, my name is Kirill. Hi, my name is Kirill.
-      Hi, my name is Kirill. Hi, my name is Kirill. Hi, my name is Kirill. Hi, my name is Kirill.
-      Hi, my name is Kirill. Hi, my name is Kirill. Hi, my name is Kirill. Hi, my name is Kirill.
-      Hi, my name is Kirill. Hi, my name is Kirill. Hi, my name is Kirill. Hi, my name is Kirill.
-      Hi, my name is Kirill. Hi, my name is Kirill.
-    </p>
+    <div class="about-content">
+      <div class="about-left">
+        <img src="photo.jpg" alt="Photo" class="about-photo">
+  
+        <div class="about-meta">
+          <div class="about-name">Kirill Acharya</div>
+          <div class="about-desc">PhD student at Stanford University</div>
+  
+          <div class="social-row">
+            <a class="social-btn" href="https://www.stanford.edu/">
+              <img class="social-icon icon-default" src="icons/stanford-logo-black.svg" alt="Stanford">
+              <img class="social-icon icon-hover"  src="icons/stanford-logo.svg" alt="" aria-hidden="true">
+            </a>
+          
+            <a class="social-btn" href="https://scholar.google.com/citations?user=OfY2taEAAAAJ&hl=en">
+              <img class="social-icon icon-default" src="icons/scholar-logo-black.svg" alt="Google Scholar">
+              <img class="social-icon icon-hover"  src="icons/scholar-logo.svg" alt="" aria-hidden="true">
+            </a>
+          
+            <a class="social-btn" href="https://www.linkedin.com/in/kirillacharya/">
+              <img class="social-icon icon-default" src="icons/linkedin-logo-black.svg" alt="LinkedIn">
+              <img class="social-icon icon-hover"  src="icons/linkedin-logo.svg" alt="" aria-hidden="true">
+            </a>
+          
+            <a class="social-btn" href="https://x.com/kirillacharya">
+              <img class="social-icon icon-default" src="icons/x-logo.svg" alt="X">
+              <img class="social-icon icon-hover"  src="icons/x-logo-black.svg" alt="" aria-hidden="true">
+            </a>
+          
+            <!-- <a class="social-btn" href="https://github.com/">
+              <img class="social-icon icon-default" src="icons/github-logo.svg" alt="GitHub">
+              <img class="social-icon icon-hover"  src="icons/github-logo.svg" alt="" aria-hidden="true">
+            </a> -->
+          </div>
+        </div>
+      </div>
+  
+      <div class="about-text">
+        <p>
+          I am a PhD student at Stanford University, interested in developing reliable and efficient algorithms for modern AI systems, with particular interest in AI safety, interpretability, and privacy. <br>
+          
+        </p>
+      </div>
+    </div>
   </section>
 
   <section id="publications" class="about-section">
+    <div class="glass-pill">
+      <div class="pill-main">
+        <div class="pill-title">The Power of Extrapolation in Federated Learning</div>
+        <div class="pill-authors">Hanmin Li, Kirill Acharya, Peter Richtárik</div>
+        <div class="pill-venue">NeurIPS 2024</div>
+      </div>
+      <a href="https://proceedings.neurips.cc/paper_files/paper/2024/file/e0b6f389739496e363a89155c9448a8a-Paper-Conference.pdf" class="pill-tag">
+        PDF
+      </a>
+      <!-- <a href="#" class="pill-tag">
+        arXiv
+      </a> -->
+      <!-- <a href="#" class="pill-tag">
+        Code
+      </a> -->
+      <a href="https://neurips.cc/virtual/2024/poster/95940" class="pill-tag">
+        Video
+      </a>
+    </div>
+  </section>
+
+  <section id="involvements" class="about-section">
     <p>
-      Here will be my publication<br>
-      Here will be my publication<br>
-      Here will be my publication<br>
-      Here will be my publication<br>
-      Here will be my publication<br>
-      Here will be my publication<br>
-      Here will be my publication<br>
-      Here will be my publication<br>
-      Here will be my publication<br>
-      Here will be my publication<br>
-      Here will be my publication<br>
-      Here will be my publication<br>
-      Here will be my publication<br>
-      Here will be my publication<br>
-      Here will be my publication<br>
-      Here will be my publication<br>
-      Here will be my publication
+    Reviewer for Journal of Machine Learning Research (<a href="https://www.jmlr.org/">JMLR</a>) (2024)<br>
     </p>
   </section>
 
-  <section id="contact" class="about-section contact-block">
-    <p>Here will be my contacts</p>
+  <section id="contact" class="about-section">
+    <p>
+      For any inquiries please drop me an email at kacharya[at]stanford.edu<br>
+    </p>
+    <!-- <a href="https://kirillacharya.com">Kirill</a> -->
   </section>
+
+  <section id="website" class="about-section">
+    <p>
+      If you notice a bug don't hesitate to drop me an email <br> 
+    </p>
+  </section>
+
+  <footer class="site-footer">
+    © <span id="year"></span> Kirill Acharya. 
+    Design licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>, 
+    code under <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">MIT License</a>.
+  </footer>
+  
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
   <script>
     const STICKY = document.querySelector('.nav-sticky-wrapper');   // glass bar
@@ -113,5 +207,29 @@
     window.addEventListener('resize',  highlight);
     document.addEventListener('DOMContentLoaded', highlight);
   </script>
+
+  <script>
+    // Fades sibling pill-tags on hover
+    document.querySelectorAll('.pill-tag').forEach(tag => {
+      tag.addEventListener('mouseenter', () => {
+        const parent = tag.closest('.glass-pill');
+        parent.querySelectorAll('.pill-tag').forEach(sibling => {
+          if (sibling !== tag) sibling.classList.add('pill-faded');
+        });
+      });
+      tag.addEventListener('mouseleave', () => {
+        const parent = tag.closest('.glass-pill');
+        parent.querySelectorAll('.pill-tag').forEach(sibling => {
+          sibling.classList.remove('pill-faded');
+        });
+      });
+    });
+  </script>
+
+<script>
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    document.body.classList.toggle('inverted');
+  });
+</script>
 </body>
-</html> -->
+</html>
