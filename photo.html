@@ -1,19 +1,27 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kirill Acharya — Photo</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8">
+  <title>Photo</title>
+
+  <!-- prevent indexing -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000; /* optional */
+    }
+    img {
+      display: block;
+      max-width: 100vw;
+      max-height: 100vh;
+      margin: auto;
+    }
+  </style>
 </head>
 <body>
-  <main style="max-width: 900px; margin: 40px auto; padding: 0 16px;">
-    <a class="liquid-btn liquid-link" href="index.html">← Back</a>
-
-    <h1 style="margin-top: 24px;">Photo</h1>
-
-    <!-- put your other photo file in your project, e.g. photo2.jpg -->
-    <img src="kirill_at_stanford.jpg" alt="Kirill Acharya" style="width: 100%; height: auto; border-radius: 16px;" />
-  </main>
+  <img src="kirill_at_stanford.jpg" alt="">
 </body>
 </html>
