@@ -164,8 +164,6 @@ main {
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
-
-  /* ✅ No background or padding here now */
   margin: 0;
   padding: 0;
 }
@@ -642,3 +640,4 @@ body.inverted .site-footer {
   text-decoration-color: transparent;
   text-decoration: underline;
 }
+
