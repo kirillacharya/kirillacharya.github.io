@@ -217,14 +217,6 @@
     document.addEventListener('DOMContentLoaded', () => { cacheSectionPositions(); highlight(); });
   </script>
 
-  <script>
-    // Fades sibling pill-tags on hover
-    document.querySelectorAll('.pill-tag').forEach(tag => {
-      const siblings = [...tag.closest('.glass-pill').querySelectorAll('.pill-tag')].filter(s => s !== tag);
-      tag.addEventListener('mouseenter', () => siblings.forEach(s => s.classList.add('pill-faded')));
-      tag.addEventListener('mouseleave', () => siblings.forEach(s => s.classList.remove('pill-faded')));
-    });
-  </script>
 
 <script>
   document.getElementById('theme-toggle').addEventListener('click', () => {

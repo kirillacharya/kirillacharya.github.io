@@ -426,20 +426,6 @@ html {
   text-decoration: none !important;
 }
 
-.pill-tag:hover {
-  text-decoration: none !important;
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-
-body.inverted .pill-tag:hover {
-  color: #C41E3A !important;         
-  border-color: rgba(255, 255, 255, 0.35);
-}
-
-.pill-tag.pill-faded {
-  color: rgba(0, 0, 0, 0.3);
-}
 
 /* ---- About left column (photo + meta) ---- */
 .about-left {
