@@ -594,15 +594,8 @@ body.inverted .nav-panel .liquid-btn.active {
   -webkit-backdrop-filter: blur(15px) saturate(180%);
   background: rgba(255, 255, 255, 0.15);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  color: rgba(0, 0, 0, 0.75);
+  color: inherit;
   margin-top: 3rem;
-}
-
-/* dark mode */
-body.inverted .site-footer {
-  background: rgba(30, 30, 30, 0.88);
-  border-top: 1px solid rgba(255, 255, 255, 0.25);
-  color: rgba(255, 255, 255, 0.75);
 }
 
 /* ─── Footer links (match rest of site) ─── */
