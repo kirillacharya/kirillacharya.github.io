@@ -351,10 +351,14 @@ body.inverted .nav-panel .liquid-btn:not(.active) {
   }
 
   .nav-panel .liquid-btn {
-    padding: 0.5rem 0.9rem;
-    font-size: 0.85rem;
     white-space: nowrap;
     flex-shrink: 0;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+  }
+
+  .nav-panel .liquid-btn.active {
+    opacity: 1;
   }
 }
 
