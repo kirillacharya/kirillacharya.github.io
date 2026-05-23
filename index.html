@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Kirill Acharya</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
   <main>
@@ -20,7 +20,7 @@
   <meta charset="UTF-8">
   <title>Kirill Acharya</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
   <link rel="preload" as="image" href="icons/stanford-logo.svg">
   <link rel="preload" as="image" href="icons/linkedin-logo-regular.svg">
 </head>
@@ -204,7 +204,7 @@
         const panel = document.querySelector('.nav-sticky-wrapper');
         if (activeLink && panel) {
           const linkCenter = activeLink.offsetLeft + activeLink.offsetWidth / 2;
-          panel.scrollTo({ left: linkCenter - panel.offsetWidth / 2, behavior: 'smooth' });
+          panel.scrollTo({ left: linkCenter - panel.offsetWidth / 2, behavior: 'instant' });
         }
       }
 

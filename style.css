@@ -354,7 +354,7 @@ body.inverted .nav-panel .liquid-btn:not(.active) {
     white-space: nowrap;
     flex-shrink: 0;
     opacity: 0.3;
-    transition: opacity 0.3s ease;
+    transition: opacity 0s;
   }
 
   .nav-panel .liquid-btn.active {
