@@ -20,12 +20,6 @@ body {
   margin: 0;
 }
 
-main {
-  max-width: 600px;
-  margin: auto;
-  text-align: center;
-}
-
 
 .liquid-btn {
   position: relative;
@@ -45,7 +39,6 @@ main {
     0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   cursor: pointer;
   overflow: hidden;
-  /*transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);*/
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   transition: background 0.6s ease, box-shadow 0.6s ease;
 }
@@ -173,11 +166,7 @@ main {
   margin-bottom: 0;
 }
 
-/* --- 1. Default look in the no-active state -------------------- */
-/* Nothing to do: they’ll keep the normal `.liquid-btn` styling     */
-/* ----------------------------------------------------------------*/
-
-/* --- 2. When *any* button is hovered, make THAT one dark -------- */
+/* When *any* button is hovered, make THAT one dark */
 .nav-panel.no-active .liquid-btn:hover {
   background: rgba(0, 0, 0, 0.85);  /* active black */
   color: #fff;
@@ -272,7 +261,7 @@ body.inverted .nav-panel .liquid-btn:not(.active) {
   transition: color 0.3s ease;
 }
 
-.about-section a::after {
+.about-section a:not(.pill-tag):not(.social-btn)::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -360,6 +349,8 @@ body.inverted .nav-panel .liquid-btn:not(.active) {
   .nav-panel .liquid-btn.active {
     opacity: 1;
   }
+
+  .about-left { align-items: center; }
 }
 
 body::after {
@@ -411,11 +402,6 @@ html {
   line-height: 1.4;
 }
 
-.pill-actions {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
 
 .pill-tag {
   display: flex;
@@ -445,11 +431,6 @@ html {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-.pill-tag::after {
-  color: rgba(0, 0, 0, 0.9) !important;
-  content: none !important;
-  text-decoration: none !important;
-}
 
 body.inverted .pill-tag:hover {
   color: #C41E3A !important;         
@@ -553,11 +534,7 @@ body.inverted .pill-tag:hover {
 
 /* kill the fancy underline for the icon buttons */
 .social-row .social-btn { text-decoration: none !important; color: inherit; }
-.social-row .social-btn::after { content: none !important; }
 
-@media (max-width: 640px) {
-  .about-left { align-items: center; }
-}
 
 .theme-toggle-btn {
   width: 40px; height: 40px; padding: 0;
@@ -568,19 +545,11 @@ body.inverted .pill-tag:hover {
 /* icons share sizing; only one is visible at a time */
 .theme-toggle-btn .icon { width: 22px; height: 22px; display:none; }
 
-/* Light mode: show black moon */
-body:not(.inverted) .theme-toggle-btn { color:#000; }
-body:not(.inverted) .theme-toggle-btn .moon { display:block; }
-
-/* Dark mode: show white sun */
-body.inverted .theme-toggle-btn { color:#fff; }
-body.inverted .theme-toggle-btn .sun { display:block; }
-
-/* Light mode: show black moon */
+body:not(.inverted) .theme-toggle-btn { color: #000; }
 body:not(.inverted) .theme-toggle-btn .moon { display: block; }
 
-/* Dark mode: show white sun */
-body.inverted .theme-toggle-btn .sun  { display: block; }
+body.inverted .theme-toggle-btn { color: #fff; }
+body.inverted .theme-toggle-btn .sun { display: block; }
 
 /* Dark mode base */
 body.inverted {
@@ -662,8 +631,7 @@ body.inverted .site-footer {
 
 .site-footer a:hover,
 .site-footer a:focus {
-  color: #C41E3A;                          
+  color: #C41E3A;
   text-decoration-color: transparent;
   text-decoration: underline;
 }
-

@@ -1,19 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Kirill Acharya</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css?v=4">
-</head>
-<body>
-  <main>
-    <h1>Kirill Acharya</h1>
-    <button class="liquid-btn">Coming Soon</button>
-  </main>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -164,73 +148,81 @@
   </script>
 
   <script>
-    const STICKY = document.querySelector('.nav-sticky-wrapper');   // glass bar
-    const LINKS  = document.querySelectorAll('.nav-panel a');
-    const SECS   = [...LINKS].map(l => document.getElementById(l.dataset.target));
-    
-    console.info('[scroll-debug] sections:', SECS.map(s => s.id));
-    
-    function debugLog(msg){ console.log('%c[scroll-debug]','color:#09f',msg) }
-    
+    const STICKY   = document.querySelector('.nav-sticky-wrapper');   // glass bar
+    const LINKS    = document.querySelectorAll('.nav-panel a');
+    const NAV_PANEL = document.querySelector('.nav-panel');
+    const SECS     = [...LINKS].map(l => document.getElementById(l.dataset.target));
+
+    // Cache section positions; recalculated on resize via highlight()
+    let SEC_RECTS = [];
+    function cacheSectionPositions() {
+      SEC_RECTS = SECS.map(sec => ({
+        id:     sec.id,
+        top:    sec.offsetTop,
+        bottom: sec.offsetTop + sec.offsetHeight,
+      }));
+    }
+
+    // Build a map from data-target -> link element for O(1) mobile lookup
+    const LINK_MAP = {};
+    LINKS.forEach(l => { LINK_MAP[l.dataset.target] = l; });
+
+    let lastActiveId = undefined;
+
     function highlight(){
       const barBottom = STICKY.getBoundingClientRect().bottom + window.scrollY;
-    
-      let activeId = null;
-      SECS.forEach(sec => {
-        const top    = sec.offsetTop;
-        const bottom = top + sec.offsetHeight;
-        if(barBottom >= top && barBottom < bottom){
-          activeId = sec.id;
-        }
-      });
 
-      const navPanel = document.querySelector('.nav-panel');
+      let activeId = null;
+      for (const rect of SEC_RECTS) {
+        if (barBottom >= rect.top && barBottom < rect.bottom) {
+          activeId = rect.id;
+          break;
+        }
+      }
+
+      // Skip all DOM writes when nothing changed
+      if (activeId === lastActiveId) return;
+      lastActiveId = activeId;
 
       if (!activeId) {
-        navPanel.classList.add('no-active');
+        NAV_PANEL.classList.add('no-active');
       } else {
-        navPanel.classList.remove('no-active');
+        NAV_PANEL.classList.remove('no-active');
       }
 
       LINKS.forEach(link => {
         const isActive = link.dataset.target === activeId;
         link.classList.toggle('active', isActive);
-        link.classList.toggle('inactive', !isActive && activeId);
+        link.classList.toggle('inactive', !isActive && !!activeId);
       });
 
       // Mobile: auto-scroll nav to center the active button
       if (window.innerWidth <= 640 && activeId) {
-        const activeLink = document.querySelector(`.nav-panel a[data-target="${activeId}"]`);
-        const panel = document.querySelector('.nav-sticky-wrapper');
-        if (activeLink && panel) {
+        const activeLink = LINK_MAP[activeId];
+        if (activeLink) {
           const linkCenter = activeLink.offsetLeft + activeLink.offsetWidth / 2;
-          panel.scrollTo({ left: linkCenter - panel.offsetWidth / 2, behavior: 'instant' });
+          STICKY.scrollTo({ left: linkCenter - STICKY.offsetWidth / 2, behavior: 'instant' });
         }
       }
-
-      debugLog({barBottom, activeId});
     }
-    
+
+    function onResize() {
+      cacheSectionPositions();
+      lastActiveId = undefined; // force DOM update after recalc
+      highlight();
+    }
+
     window.addEventListener('scroll',  highlight, {passive:true});
-    window.addEventListener('resize',  highlight);
-    document.addEventListener('DOMContentLoaded', highlight);
+    window.addEventListener('resize',  onResize);
+    document.addEventListener('DOMContentLoaded', () => { cacheSectionPositions(); highlight(); });
   </script>
 
   <script>
     // Fades sibling pill-tags on hover
     document.querySelectorAll('.pill-tag').forEach(tag => {
-      tag.addEventListener('mouseenter', () => {
-        const parent = tag.closest('.glass-pill');
-        parent.querySelectorAll('.pill-tag').forEach(sibling => {
-          if (sibling !== tag) sibling.classList.add('pill-faded');
-        });
-      });
-      tag.addEventListener('mouseleave', () => {
-        const parent = tag.closest('.glass-pill');
-        parent.querySelectorAll('.pill-tag').forEach(sibling => {
-          sibling.classList.remove('pill-faded');
-        });
-      });
+      const siblings = [...tag.closest('.glass-pill').querySelectorAll('.pill-tag')].filter(s => s !== tag);
+      tag.addEventListener('mouseenter', () => siblings.forEach(s => s.classList.add('pill-faded')));
+      tag.addEventListener('mouseleave', () => siblings.forEach(s => s.classList.remove('pill-faded')));
     });
   </script>
 
