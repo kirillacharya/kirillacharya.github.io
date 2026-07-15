@@ -360,6 +360,47 @@ html {
 }
 
 
+/* News pills: date badge on the left, text on the right */
+.news-pill {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1rem 1.5rem;
+  border-radius: 20px;
+  margin: 0 auto;
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  background: rgba(120, 120, 120, 0.18);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(255, 255, 255, 0.05) inset;
+  border: 1px solid rgba(120, 120, 120, 0.25);
+  max-width: 920px;
+}
+
+.news-pill + .news-pill {
+  margin-top: 1rem;
+}
+
+.news-date {
+  flex-shrink: 0;
+  min-width: 84px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  background: rgba(196, 30, 58, 0.12);
+  color: #C41E3A;
+}
+
+.news-text {
+  flex: 1;
+  min-width: 200px;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
 .pill-tag {
   display: flex;
   align-items: center;
@@ -502,7 +543,8 @@ body.inverted {
 
 /* Content blocks (sections/pills) */
 body.inverted .about-section,
-body.inverted .glass-pill {
+body.inverted .glass-pill,
+body.inverted .news-pill {
   background: rgba(30, 30, 30, 0.88);
   border: 1px solid rgba(255, 255, 255, 0.35);
   box-shadow:
@@ -514,11 +556,19 @@ body.inverted .glass-pill {
 
 /* Force descendants to inherit the block's white text */
 body.inverted .about-section * ,
-body.inverted .glass-pill * { color: inherit !important; }
+body.inverted .glass-pill *,
+body.inverted .news-pill * { color: inherit !important; }
 
 /* Content links: white + underline */
 body.inverted .about-section a,
-body.inverted .glass-pill a { text-decoration: underline; }
+body.inverted .glass-pill a,
+body.inverted .news-pill a { text-decoration: underline; }
+
+/* Keep the date badge visually distinct as an accent pill in dark mode */
+body.inverted .news-date {
+  background: rgba(196, 30, 58, 0.3);
+  color: #ff6b81 !important;
+}
 
 /* Media stays natural */
 body.inverted img,
