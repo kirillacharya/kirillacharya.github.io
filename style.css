@@ -370,11 +370,11 @@ html {
   margin: 0 auto;
   backdrop-filter: blur(15px) saturate(180%);
   -webkit-backdrop-filter: blur(15px) saturate(180%);
-  background: rgba(120, 120, 120, 0.18);
+  background: rgba(255, 255, 255, 0.15);
   box-shadow:
     0 4px 24px rgba(0, 0, 0, 0.1),
     0 1px 2px rgba(255, 255, 255, 0.05) inset;
-  border: 1px solid rgba(120, 120, 120, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   max-width: 920px;
 }
 
@@ -399,6 +399,17 @@ html {
   min-width: 200px;
   font-size: 1.05rem;
   line-height: 1.5;
+}
+
+/* News-pill links: no color change or animated underline on hover — just keep the underline */
+.news-pill a::after {
+  content: none;
+}
+
+.news-pill a:hover,
+.news-pill a:focus {
+  color: inherit;
+  text-decoration-color: currentColor;
 }
 
 .pill-tag {
