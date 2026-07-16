@@ -363,7 +363,7 @@ html {
 /* News pills: date badge on the left, text on the right */
 .news-pill {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 1.25rem;
   padding: 1rem 1.5rem;
   border-radius: 20px;
@@ -384,7 +384,6 @@ html {
 
 .news-date {
   flex-shrink: 0;
-  align-self: flex-start;
   text-align: center;
   font-weight: 700;
   font-size: 0.8rem;
@@ -401,14 +400,10 @@ html {
   line-height: 1.5;
 }
 
-/* News-pill links: no color change or animated underline on hover — just keep the underline */
-.news-pill a::after {
-  content: none;
-}
-
+/* News-pill links: same red hover + animated underline as the rest of the site,
+   but keep the underline visible throughout instead of it disappearing */
 .news-pill a:hover,
 .news-pill a:focus {
-  color: inherit;
   text-decoration-color: currentColor;
 }
 
