@@ -207,40 +207,26 @@ body.inverted .nav-panel .liquid-btn:not(.active) {
 
 
 
-/* ─── Enhanced link styling inside content sections ─────────────── */
+/* ─── Enhanced link styling inside content sections ───────────────
+   Underline always tracks the current text color (via currentColor),
+   so it never disappears — hover just recolors the text and the
+   underline follows automatically. */
 .about-section a,
-.about-section a:visited {
-  position: relative;
+.about-section a:visited,
+.glass-pill a,
+.glass-pill a:visited {
   color: #000;
   text-decoration: underline;
-  text-decoration-color: #000;
+  text-decoration-color: currentColor;
   text-underline-offset: 2px;
-  transition: color 0.3s ease;
-}
-
-.about-section a:not(.pill-tag):not(.social-btn)::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  width: 100%;
-  background: linear-gradient(to right, #C41E3A 0%, #C41E3A 100%);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease-in-out;
-  pointer-events: none;
+  transition: color 0.2s ease;
 }
 
 .about-section a:hover,
-.about-section a:focus {
+.about-section a:focus,
+.glass-pill a:hover,
+.glass-pill a:focus {
   color: #C41E3A;
-  text-decoration-color: transparent;
-}
-
-.about-section a:hover::after,
-.about-section a:focus::after {
-  transform: scaleX(1);
 }
 
 .about-content {
@@ -407,13 +393,6 @@ html {
   line-height: 1.5;
 }
 
-/* News-pill links: same red hover + animated underline as the rest of the site,
-   but keep the underline visible throughout instead of it disappearing */
-.news-pill a:hover,
-.news-pill a:focus {
-  text-decoration-color: currentColor;
-}
-
 .pill-tag {
   display: flex;
   align-items: center;
@@ -577,6 +556,17 @@ body.inverted .about-section a,
 body.inverted .glass-pill a,
 body.inverted .news-pill a { text-decoration: underline; }
 
+/* Content links still go cardinal red on hover in dark mode — needs to beat
+   the "inherit white text" rule above, hence the matching !important */
+body.inverted .about-section a:hover,
+body.inverted .about-section a:focus,
+body.inverted .glass-pill a:hover,
+body.inverted .glass-pill a:focus,
+body.inverted .news-pill a:hover,
+body.inverted .news-pill a:focus {
+  color: #C41E3A !important;
+}
+
 /* Media stays natural */
 body.inverted img,
 body.inverted video,
@@ -625,6 +615,4 @@ body.inverted .nav-panel .liquid-btn.active {
 .site-footer a:hover,
 .site-footer a:focus {
   color: #C41E3A;
-  text-decoration-color: transparent;
-  text-decoration: underline;
 }
