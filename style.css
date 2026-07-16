@@ -382,15 +382,22 @@ html {
   margin-top: 1rem;
 }
 
+/* Styled like the PDF/Video pill-tags in Publications for cross-theme consistency */
 .news-date {
   flex-shrink: 0;
   text-align: center;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.8rem;
-  padding: 0.3rem 0.7rem;
+  padding: 0.35rem 0.9rem;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.08);
-  color: rgba(0, 0, 0, 0.75);
+  background: transparent;
+  backdrop-filter: blur(20px) saturate(200%);
+  -webkit-backdrop-filter: blur(20px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(255, 255, 255, 0.1) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
 }
 
 .news-text {
@@ -569,12 +576,6 @@ body.inverted .news-pill * { color: inherit !important; }
 body.inverted .about-section a,
 body.inverted .glass-pill a,
 body.inverted .news-pill a { text-decoration: underline; }
-
-/* Keep the date badge visually distinct as a small neutral pill in dark mode */
-body.inverted .news-date {
-  background: rgba(255, 255, 255, 0.14);
-  color: #fff !important;
-}
 
 /* Media stays natural */
 body.inverted img,
